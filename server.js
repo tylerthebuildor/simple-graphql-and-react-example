@@ -1,8 +1,6 @@
 const express = require('express');
 const expressGraphQL = require('express-graphql');
 const { buildSchema } = require('graphql');
-const expressPlayground = require('graphql-playground-middleware-express')
-  .default;
 
 // Setup
 const app = new express();
@@ -40,17 +38,13 @@ app
   .use('/', express.static(__dirname + '/dist'))
   .use(
     '/graphql',
-    expressGraphQL(req => ({
+    expressGraphQL({
       schema,
       rootValue: resolvers,
       graphiql: true,
-      context: { userId: req.jwt },
-    }))
+    })
   )
-  .get('/playground', expressPlayground({ endpoint: '/graphql' }))
   .listen(3000, () => {
     console.log('Visit: http://localhost:3000/ for React.js front-end');
-    console.log(
-      'Visit: http://localhost:3000/playground for GraphQLPlayground'
-    );
+    console.log('Visit: http://localhost:3000/graphql for GraphiQL');
   });

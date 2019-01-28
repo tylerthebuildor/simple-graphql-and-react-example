@@ -10,10 +10,10 @@ Read more in the [blog post](https://blog.tylerbuchea.com/simple-graphql-react-e
 git clone git@github.com:tylerbuchea/simple-graphql-and-react-example.git
 cd simple-graphql-and-react-example
 yarn install
-node index.js
+node server.js # Node v10 or later
 ```
 
-## Queries to try in Playground
+## Queries to try in GraphiQL
 
 ```graphql
 mutation createUser {
